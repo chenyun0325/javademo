@@ -23,6 +23,13 @@
 
 
     <dependencies>
+        <!-- tt的pom依赖-->
+        <dependency>
+            <groupId>com.alibaba.cdo</groupId>
+            <artifactId>timetunnel-clientng</artifactId>
+            <version>0.5.4</version>
+        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
