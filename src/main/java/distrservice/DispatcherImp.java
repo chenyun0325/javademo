@@ -1,10 +1,9 @@
 package distrservice;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @WebService(endpointInterface="distrservice.IDispatcher")

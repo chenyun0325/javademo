@@ -1,10 +1,10 @@
 package file.service;
 
+import file.datastructure.IConfiguration;
+
 import java.io.File;
 import java.net.URL;
 import java.util.HashSet;
-
-import file.datastructure.IConfiguration;
 
 /**
  * 读取配置文件接口

@@ -9,11 +9,10 @@
  */
 package distrservice;
 
-import java.net.URL;
-import java.util.Date;
-
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+import java.net.URL;
+import java.util.Date;
 
 /**
  * 

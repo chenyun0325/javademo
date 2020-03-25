@@ -9,10 +9,8 @@
  */
 package distrservice;
 
-import java.rmi.RemoteException;
-import java.util.Map;
-
 import javax.jws.WebService;
+import java.rmi.RemoteException;
 
 /**
  * 

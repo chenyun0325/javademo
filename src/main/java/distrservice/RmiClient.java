@@ -16,8 +16,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import javax.naming.Name;
-
 /**
  * 
  * 项目名称：portal 02

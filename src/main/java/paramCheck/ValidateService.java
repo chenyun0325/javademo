@@ -1,8 +1,8 @@
 package paramCheck;
 
-import java.lang.reflect.Field;
-
 import com.hsnet.pz.api.exception.ValidException;
+
+import java.lang.reflect.Field;
 
 /**
  * 运用抛出异常控制逻辑

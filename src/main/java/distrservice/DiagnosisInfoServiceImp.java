@@ -9,12 +9,9 @@
  */
 package distrservice;
 
-import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
+import java.rmi.RemoteException;
 
 /**
  * 

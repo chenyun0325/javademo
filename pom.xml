@@ -24,10 +24,16 @@
 
     <dependencies>
         <!-- tt的pom依赖-->
+        <!--<dependency>-->
+            <!--<groupId>com.alibaba.cdo</groupId>-->
+            <!--<artifactId>timetunnel-clientng</artifactId>-->
+            <!--<version>0.5.4</version>-->
+        <!--</dependency>-->
+
         <dependency>
-            <groupId>com.alibaba.cdo</groupId>
-            <artifactId>timetunnel-clientng</artifactId>
-            <version>0.5.4</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
         </dependency>
 
         <dependency>
@@ -51,5 +57,40 @@
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
         </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.asynchttpclient</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>2.1.0-alpha21</version>
+        </dependency>
+        <dependency>
+            <groupId>org.asynchttpclient</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>2.0.33</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+
     </dependencies>
 </project>

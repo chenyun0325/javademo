@@ -1,12 +1,12 @@
 package file.datastructure;
 
+import org.dom4j.io.OutputFormat;
+
 import java.io.FileOutputStream;
 import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.Properties;
-
-import org.dom4j.io.OutputFormat;
 
 public class PropretiesConfiguration implements IConfiguration {
 

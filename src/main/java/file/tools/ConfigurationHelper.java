@@ -1,18 +1,17 @@
 package file.tools;
 
-import java.io.File;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Properties;
-
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.io.SAXReader;
-
 import file.datastructure.IConfiguration;
 import file.datastructure.PropretiesConfiguration;
 import file.datastructure.XmlConfiguration;
 import file.service.IConfigurationHelper;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.io.SAXReader;
+
+import java.io.File;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Properties;
 
 /**
  * 加载文件系统和jar包中的资源文件

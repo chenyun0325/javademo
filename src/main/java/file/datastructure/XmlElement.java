@@ -1,10 +1,10 @@
 package file.datastructure;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dom4j.Attribute;
 import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class XmlElement implements IElement {
 
