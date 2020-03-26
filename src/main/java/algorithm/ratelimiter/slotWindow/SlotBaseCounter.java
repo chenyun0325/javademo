@@ -5,22 +5,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * https://www.iteye.com/blog/yunchow-2277593
- *
- *
+ * <p>
+ * <p>
  * 额外学习参考:
- *
+ * <p>
  * https://blog.csdn.net/dbqb007/article/details/88082279
- *
+ * <p>
  * https://blog.csdn.net/king0406/article/details/103129786
- *
+ * <p>
  * https://blog.csdn.net/weixin_41485592/article/details/91825692
- *
  */
 public class SlotBaseCounter {
     private int slotSize;
     private AtomicInteger[] slotCounter;
 
     public SlotBaseCounter(int slotSize) {
+        slotSize = slotSize < 1 ? 1 : slotSize;
         this.slotSize = slotSize;
         this.slotCounter = new AtomicInteger[slotSize];
         for (int i = 0; i < slotSize; i++) {
