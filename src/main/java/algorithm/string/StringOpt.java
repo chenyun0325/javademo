@@ -76,4 +76,52 @@ public class StringOpt {
         }
     }
 
+    /**
+     * https://www.jianshu.com/p/4ef3cfa01367
+     * @param strs
+     * @return
+     */
+    public static String longestCommonPrefix(String[] strs){
+        if (strs.length==0){
+            return "";
+        }
+        String minStr = strs[0];
+        int minLength = minStr.length();
+        for (String str : strs) {
+            if (str.length()<minLength) {
+                minLength=str.length();
+                minStr=str;
+            }
+        }
+        String result = "";
+        int index = minLength;
+
+        while (index>0){
+            String substring = minStr.substring(0, index);
+            boolean isMax = true;
+
+            /**
+             * 从第二个字符串开始比较
+             */
+            for (int i=1;i<strs.length;i++){
+                /**
+                 * 快速跳出循环执行index--
+                 */
+                if (!strs[i].startsWith(substring)) {
+                    isMax = false;
+                    break;
+                }
+            }
+
+            if (isMax){
+                result = substring;
+                //得到最长公共前缀
+                break;
+            }
+            index--;
+        }
+
+        return result;
+    }
+
 }
