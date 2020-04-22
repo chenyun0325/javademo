@@ -101,4 +101,23 @@ public class Sort {
             arr[j+1] = value;//插入数据
         }
     }
+
+
+    /**
+     * https://www.cnblogs.com/chengxiao/p/6194356.html
+     *
+     * 两个有序数组合并
+     * @param arr
+     * @param left
+     * @param mid
+     * @param right
+     * @param temp
+     */
+    public static void merge(int[] arr,int left,int mid,int right,int[] temp){
+
+        int i = left;//左序列指针
+        int j= mid+1;//右序列指针
+        int t =0;//临时数组指针
+
+    }
 }
