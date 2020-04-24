@@ -124,4 +124,19 @@ public class StringOpt {
         return result;
     }
 
+    public static void printSubString(String str){
+        int sum =0;
+        int length = str.length();
+        for (int i =0;i<length;i++){
+            for (int j= i+1;j<length;j++){
+                String substring = str.substring(i, j);
+                if (substring.equals(new StringBuffer(substring).reverse().toString())){
+                    sum++;
+                    System.out.println(substring);
+                }
+            }
+        }
+        System.out.println(sum);
+
+    }
 }
