@@ -78,7 +78,11 @@ public class StringMatch {
     }
 
 
-
+    /**
+     * 最长重复子串
+     * @param str
+     * @return
+     */
     public static String repeatStr(String str){
 
         if (str == null || str.length() < 1){
