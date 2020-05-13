@@ -6,8 +6,9 @@ package rpc;
 public class RpcClient {
 
     public static void main(String[] args) {
-        String ip ="30.33.48.190";
+        String ip ="10.201.69.48";
         int port =9001;
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
         IHello iHello = ProxyFactory.create(IHello.class, ip, port);
         System.out.println(iHello.sayHello("cy"));
     }

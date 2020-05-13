@@ -14,14 +14,14 @@ public class StringOpt {
 //        leftRotateString(s,6,3);
 //        System.out.println(JSON.toJSONString(s));
 
-//        String str="abc";
-//        printChildString(str.toCharArray(),0,"");
+        String str="abc";
+        printChildString(str.toCharArray(),0,"");
 //        printChildString_v(str.toCharArray(),0);
-
-        String testStr = "abcdeab";
-
-        int i = lengthOfLongestSubstring(testStr);
-        System.out.println(i);
+//
+//        String testStr = "abcdeab";
+//
+//        int i = lengthOfLongestSubstring(testStr);
+//        System.out.println(i);
 
     }
 
@@ -58,6 +58,12 @@ public class StringOpt {
         reverseString(chars,0,n-1);
     }
 
+    /**
+     * https://www.jianshu.com/p/5d6744acf6b4
+     * @param chars
+     * @param index
+     * @param lastR
+     */
     public static void printChildString(char[] chars,int index,String lastR){
         //index代表当前遍历的字符在字符串的位置
         if (index == chars.length){
@@ -159,7 +165,7 @@ public class StringOpt {
      */
     public static int lengthOfLongestSubstring(String s){
         // 哈希集合，记录每个字符是否出现过
-        Set<Character> occ = new HashSet<Character>();
+        Set<Character> occ = new HashSet<>();
         int n = s.length();
         // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
         int rk = -1, ans = 0;
