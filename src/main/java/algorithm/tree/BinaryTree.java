@@ -1,7 +1,9 @@
 package algorithm.tree;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by chenyun on 2020/5/1.
@@ -67,6 +69,22 @@ public class BinaryTree {
         inOrderTraverse(root.right);
     }
 
+    public static void inOrderTraverseStack(Node head){
+        if (head != null){
+            Stack<Node> stack = new Stack<>();
+            while (!stack.isEmpty()|| head!=null){
+                if (head!=null){
+                    stack.push(head);
+                    head=head.left;
+                }else {
+                    head=stack.pop();
+                    System.out.println(head.val);
+                    head=head.right;
+                }
+            }
+        }
+    }
+
     public static void postOrderTraverse(Node root){
         if (root == null){
             return;
@@ -76,14 +94,38 @@ public class BinaryTree {
         System.out.println(root.val);
     }
 
+    public static void preOrderTraverseStack(Node root){
+        if (root != null){
+            Stack<Node> stack = new Stack<>();
+            stack.add(root);
+            while (!stack.isEmpty()){
+                Node head = stack.pop();
+                System.out.println(head.val);
+                /**
+                 * 栈FILO所以先right后left
+                 */
+                if (head.right!= null){
+                    stack.push(head.right);
+                }
+                if (head.left!= null){
+                    stack.push(head.left);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5,6,7,8,9};
         createBinTree(arr);
         Node root = nodeList.get(0);
         System.out.println("pre------------");
         preOrderTraverse(root);
+        System.out.println("stack-pre------------");
+        preOrderTraverseStack(root);
         System.out.println("in--------");
         inOrderTraverse(root);
+        System.out.println("stack-in------------");
+        inOrderTraverseStack(root);
         System.out.println("post------------");
         postOrderTraverse(root);
     }
