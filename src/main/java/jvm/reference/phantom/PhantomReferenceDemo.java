@@ -16,7 +16,7 @@ import java.lang.ref.SoftReference;
 public class PhantomReferenceDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        test3();
+        test1();
     }
 
     @Test
@@ -62,6 +62,7 @@ public class PhantomReferenceDemo {
 
         // 根据JDK8的api文档介绍，将所有这样的引用被清除或者自身变得不可访问，GC才会回收
         phantomReference =null;
+//        phantomReference.clear();
 
         byte[] bytes = new byte[1024 * 1024 * 6];
     }
