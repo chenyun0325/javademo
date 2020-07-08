@@ -16,6 +16,11 @@ public class Sort {
         quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
 
+        int[] sortCount = {3,5,8,2,5,4};
+
+        countSort(sortCount);
+
+        System.out.println(Arrays.toString(sortCount));
     }
 
 
@@ -214,4 +219,33 @@ public class Sort {
         quickSort(arr,left, i-1);//继续处理左边的，这里是一个递归的过程
         quickSort(arr,i+1, right);//继续处理右边的 ，这里是一个递归的过程
     }
+
+    public static void countSort(int[] arr) {
+        //找出数组中的最大值
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        //初始化计数数组
+        int[] countArr = new int[max + 1];
+
+        //计数
+        for (int i = 0; i < arr.length; i++) {
+            countArr[arr[i]]++;
+            arr[i] = 0;
+        }
+
+        //排序
+        int index = 0;
+        for (int i = 0; i < countArr.length; i++) {
+             while (countArr[i] > 0) {
+                arr[index++] = i;
+                countArr[i]--;
+            }
+        }
+    }
+
+
 }
