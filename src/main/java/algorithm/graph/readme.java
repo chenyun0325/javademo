@@ -14,6 +14,11 @@ package algorithm.graph;
  *
  * https://www.sining.io/2018/04/30/understanding-bellman-ford-algorithm/
  *
+ * 算法思想:
+ * https://www.zhihu.com/question/22311234/answer/156723187
+ *
+ * 图存储表示:
+ * https://www.cnblogs.com/ssyfj/p/9475148.html
  */
 public class readme {
 }
