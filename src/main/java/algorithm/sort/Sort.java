@@ -247,5 +247,12 @@ public class Sort {
         }
     }
 
+    /**
+     * 基数排序
+     * https://www.cnblogs.com/feile/p/5374825.html
+     */
+    public void baseSort(){
+
+    }
 
 }

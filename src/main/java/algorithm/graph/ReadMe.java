@@ -17,8 +17,13 @@ package algorithm.graph;
  * 算法思想:
  * https://www.zhihu.com/question/22311234/answer/156723187
  *
+ * 算法思想模板:
+ * http://chen-tao.github.io/2017/01/27/al-template/
+ * http://chen-tao.github.io/2017/01/26/about-dfs/
+ * https://blog.csdn.net/weixin_43272781/article/details/82959089
+ *
  * 图存储表示:
  * https://www.cnblogs.com/ssyfj/p/9475148.html
  */
-public class readme {
+public class ReadMe {
 }
