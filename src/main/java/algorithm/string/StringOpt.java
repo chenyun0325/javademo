@@ -15,7 +15,7 @@ public class StringOpt {
 
         String str="abc";
         printChildString(str.toCharArray(),0,"");
-//        printChildString_v(str.toCharArray(),0);
+        printChildString_v(str.toCharArray(),0);
 //
 //        String testStr = "abcdeab";
 //
