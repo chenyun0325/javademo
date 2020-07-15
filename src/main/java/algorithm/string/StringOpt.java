@@ -16,6 +16,8 @@ public class StringOpt {
         String str="abc";
         printChildString(str.toCharArray(),0,"");
         printChildString_v(str.toCharArray(),0);
+
+        System.out.println(longestPalindrome("abba"));
 //
 //        String testStr = "abcdeab";
 //
@@ -186,6 +188,73 @@ public class StringOpt {
 
         }
 
+        return ans;
+    }
+
+
+    /**
+     * https://blog.csdn.net/DaleyZou/article/details/81294607
+     * https://blog.csdn.net/wwang_dev/article/details/106677164
+     * @param s
+     * @return
+     */
+    public static String longestPalindrome(String s){
+        if (s.length()<2){
+            return s;
+        }
+        /**
+         * 那么对于一个字符串，中心位置如何取，
+         * 如果以每个字符作为中心，那么我们就能找到它所有长度为奇数的最长对称串的长度，
+         * 以连续两个字符作为中心，救能得到所有长度为偶数的最长的对称串的长度，然后我们再二者之间取最大值即可
+         */
+
+        int maxLength =0;
+        int center =0;
+
+        for (int i = 0; i < s.length(); i++){
+            int begin = centerExpand(s, i, i);          // 最长回文串长度为奇数
+            int end = centerExpand(s, i, i + 1);   // 最长回文串长度为偶数
+
+            if (maxLength < Math.max(begin, end)){
+                center = i;                                // 以center为中心
+                maxLength = Math.max(begin, end);          // 最长回文串长度
+            }
+        }
+        // 如果我们的回文串的长度为偶数，那么中心左边的长度会比右边的长度小1
+        return s.substring(center - (maxLength - 1) / 2, center + maxLength / 2 + 1);
+    }
+
+    private static int centerExpand(String s,int begin,int end){
+        int left = begin,right = end;
+        while (left>=0&&right<s.length()&&s.charAt(left)==s.charAt(right)){
+            left--;
+            right++;
+        }
+        // 返回以begin,end为基准，同时向左向右扩展后能够得到的最长回文串长度
+        return right-left-1;
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/palindromic-substrings/solution/liang-dao-hui-wen-zi-chuan-de-jie-fa-xiang-jie-zho/
+     * @param s
+     * @return
+     */
+    public static int countSubstrings(String s) {
+        // 中心扩展法
+        int ans = 0;
+        for (int center = 0; center < 2 * s.length() - 1; center++) {
+            // left和right指针和中心点的关系是？
+            // 首先是left，有一个很明显的2倍关系的存在，其次是right，可能和left指向同一个（偶数时），也可能往后移动一个（奇数）
+            // 大致的关系出来了，可以选择带两个特殊例子进去看看是否满足。
+            int left = center / 2;
+            int right = left + center % 2;
+
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                ans++;
+                left--;
+                right++;
+            }
+        }
         return ans;
     }
 }
