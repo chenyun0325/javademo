@@ -1,5 +1,6 @@
 package algorithm.bit;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -52,5 +53,62 @@ public class SubSet {
             }
         }
         return result;
+    }
+
+
+
+    public static List<List<Integer>> subsets2(int[] nums){
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        boolean[] visited = new boolean[nums.length];
+        robot(0,nums,visited,res);
+        return res;
+    }
+
+    /**
+     * 回溯算法
+     * @param idx
+     * @param nums
+     * @param visited
+     * @param res
+     */
+    private static void robot(int idx,int[]nums,boolean[]visited,List<List<Integer>> res){
+
+        /**
+         * 递归退出条件
+         */
+        if (idx>=nums.length){
+            List<Integer> tmp = new ArrayList<>();
+            for (int i=0;i<nums.length;i++){
+                if (visited[i]){
+                    tmp.add(nums[i]);
+                }
+            }
+            res.add(tmp);
+            return;
+        }
+        //不选
+        visited[idx]=false;
+        robot(idx+1,nums,visited,res);
+        //选
+        visited[idx]=true;
+        robot(idx+1,nums,visited,res);
+    }
+
+    private static void robot_v1(int idx,int[]nums,List<Integer>temp,List<List<Integer>> res){
+        //如果已经搜索到最大深度，说明到达了叶子结点，则停止搜索。
+        if (idx == nums.length){
+            res.add(temp);
+            return;
+        }
+       //假设左子树表示选择了当前数字，则先遍历选择的情况，拷贝当前已经构造的集合
+        List<Integer> choiced = new ArrayList<>(temp);
+        //添加当前数字进去
+        choiced.add(nums[idx]);
+        //继续遍历左分支
+        robot_v1(idx + 1, nums,choiced, res);
+
+        //若未选择当前数字，既是遍历右子树，因此不需要对集合做任何更改，直接传递到右子树继续遍历。
+        robot_v1( idx + 1, nums,temp, res);
     }
 }
