@@ -41,9 +41,37 @@ public class StringMatch {
             }
         }
 
-
-
         return -1;
+    }
+
+    public static int bruteforece_1(String s , String t){
+        int length = s.length();//目标字符串的长度
+        int plength = t.length();//模式串的长度
+        /**
+         * 匹配字符串的开始位置
+         */
+        int index =-1;
+
+        if (plength<length){
+            return index;
+        }
+
+        int i =0;
+        int j=0;
+        while (i<length&&j<plength){
+            if (s.charAt(i)==t.charAt(j)){
+                i++;
+                j++;
+            }else {
+                i=i-j+1;// 主串回溯到上次开始匹配的下一个字符
+                j=0;// 子串从头开始重新匹配
+            }
+        }
+        if (j>=plength){
+            index = i-j;
+        }
+
+        return index;
     }
 
     /**
@@ -111,6 +139,44 @@ public class StringMatch {
         }
 
         return str.substring(first,first+max);
+    }
+
+
+    /**
+     * 在X字符串中j-k间隔移动判断重复字符长度
+     * @param x
+     * @param k 开始位置
+     * @param j 结束位置
+     * @return
+     */
+    public static int statLen(String x ,int k,int j){
+        int len =0;
+        while (k<x.length()&&j<x.length()&&x.charAt(k)==x.charAt(j)){
+            k++;
+            j++;
+            len++;
+        }
+
+        return len;
+    }
+
+    /**
+     * o(n^3)
+     */
+    public static int naiveLRS(String x){
+        int maxlen =0;
+        int len = x.length();
+        for (int i =0;i<len;i++){
+            int k =i;//第一个游标
+            //j第二个游标
+            for (int j=i+1;j<len;j++){
+                int lenSub = statLen(x, k, j);
+                if (lenSub>maxlen){
+                    maxlen = lenSub;
+                }
+            }
+        }
+        return maxlen;
     }
 
 

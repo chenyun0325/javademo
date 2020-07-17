@@ -27,6 +27,13 @@ package algorithm.graph;
  *
  * dfs 算法案例
  * https://www.cnblogs.com/xwh-blogs/p/12721648.html
+ *
+ * dp思想案例
+ * https://www.jianshu.com/p/e788c046264d
+ * https://www.jianshu.com/p/6e3dcc476c6a
+ *
+ * 算法入门资料
+ * https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/dong-tai-gui-hua-xiang-jie-jin-jie
  */
 public class ReadMe {
 }
