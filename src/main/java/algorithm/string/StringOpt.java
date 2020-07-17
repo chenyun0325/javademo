@@ -179,7 +179,7 @@ public class StringOpt {
                 // 左指针向右移动一格，移除一个字符
                 occ.remove(s.charAt(i-1));
             }
-            while (rk +1 <n && !occ.contains(rk+1)){
+            while (rk +1 <n && !occ.contains(s.charAt(rk+1))){
                 // 不断地移动右指针
                 occ.add(s.charAt(rk+1));
                 rk++;
