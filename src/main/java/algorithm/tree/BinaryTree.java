@@ -12,12 +12,13 @@ import java.util.Stack;
  */
 public class BinaryTree {
 
-    private static List<Node> nodeList = new ArrayList<>();
+    public static List<Node> nodeList = new ArrayList<>();
 
-    static class Node{
-        Node left;
-        Node right;
-        int val;
+
+    public static class Node{
+        public Node left;
+        public Node right;
+        public int val;
 
         public Node(Node left, Node right, int val) {
             this.left = left;

@@ -41,7 +41,12 @@ public class MaximumDepthOfBinaryTree {
          * https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/javashi-xian-san-chong-fang-fa-di-gui-shi-xian-die/
          * https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/solution/er-cha-shu-de-zui-xiao-shen-du-by-leetcode/
          * 递归理解: https://blog.csdn.net/u013505811/article/details/94603773
-         * 
+         *
+         *
+         * TODO
+         * 最小树深度的理解：
+         * https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/solution/yi-ti-nang-gua-ji-hu-suo-you-de-ji-ben-suan-fa-by-/
+         * https://leetcode-cn.com/problems/balanced-binary-tree/solution/di-gui-fang-fa-zhong-de-yi-xie-xiao-you-hua-by-oum/
          * @param root
          * @return
          */
