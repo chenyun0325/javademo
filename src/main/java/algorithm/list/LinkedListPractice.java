@@ -1,5 +1,9 @@
 package algorithm.list;
 
+/**
+ * 二叉搜索树转双向列表
+ * https://www.jianshu.com/p/7e30fb656d63
+ */
 public class LinkedListPractice {
 
     static class ListNode{

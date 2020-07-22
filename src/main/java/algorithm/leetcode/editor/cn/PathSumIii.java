@@ -34,42 +34,44 @@ import com.thare.algorithm.tree.TreeNode;
  * https://leetcode-cn.com/problems/path-sum-iii/solution/437lu-jing-zong-he-iii-di-gui-fang-shi-by-ming-zhi/
  * https://leetcode-cn.com/problems/path-sum-iii/solution/shuang-zhong-di-gui-hao-yong-de-hen-by-xiao-jian-f/
  */
-public class PathSumIii{
-      public static void main(String[] args) {
-           Solution solution = new PathSumIii().new Solution();
-      }
-      //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public int pathSum(TreeNode root, int sum) {
-        if (root == null){
-            return 0;
-        }
-        /**
-         * 分解三部分:当前结点,当前节点左右子树
-         */
-        int current = countPath(root,sum);
-        int left = pathSum(root.left,sum);
-        int right = pathSum(root.right,sum);
-        return current+left+right;
+public class PathSumIii {
+    public static void main(String[] args) {
+        Solution solution = new PathSumIii().new Solution();
     }
-    public int countPath(TreeNode root,int sum){
-        if (root == null){
-            return 0;
+    //leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public int pathSum(TreeNode root, int sum) {
+            if (root == null) {
+                return 0;
+            }
+            /**
+             * 分解三部分:当前结点,当前节点左右子树
+             */
+            int current = countPath(root, sum);
+            int left = pathSum(root.left, sum);
+            int right = pathSum(root.right, sum);
+            return current + left + right;
         }
-        sum = sum - root.val;
-        int result = sum==0?1:0;
-        return result + countPath(root.left,sum)+countPath(root.right,sum);
+
+        public int countPath(TreeNode root, int sum) {
+            if (root == null) {
+                return 0;
+            }
+            sum = sum - root.val;
+            int result = sum == 0 ? 1 : 0;
+            return result + countPath(root.left, sum) + countPath(root.right, sum);
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
