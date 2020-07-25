@@ -104,21 +104,21 @@ public class BinaryTree {
         return target;
     }
 
-    public static Node KthNode(Node root, int[] k, Node[] res) {
-        if (root == null || res[0] != null) {
+    public static Node KthNode(Node root, int[] k, Node res) {
+        if (root == null) {
             return null;
         }
-        // if (res != null){
-        // return res;
-        // }
+        if (res != null) {
+            return res;
+        }
         KthNode(root.left, k, res);
 
         k[1]++;
         if (k[0] == k[1]) {
-            res[0] = root;
+            res = root;
         }
         KthNode(root.right, k, res);
-        return null;
+        return res;
     }
 
     public static Node KthNodeV1(Node root, int k) {
@@ -191,7 +191,7 @@ public class BinaryTree {
         Node root = nodeList.get(0);
         int[] count = new int[2];
         count[0] = 6;
-        Node node = KthNode(root, count);
+        Node node = KthNode(root, count, null);
         System.out.println(node.val);
         System.out.println("pre------------");
         preOrderTraverse(root);
