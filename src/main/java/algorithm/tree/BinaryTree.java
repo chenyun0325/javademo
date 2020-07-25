@@ -73,14 +73,15 @@ public class BinaryTree {
 
     /**
      * https://www.cnblogs.com/tianzeng/p/10269202.html
-     * TODO k处理错误
+     *
+     * 
+     * TODO k处理错误 参考：https://blog.csdn.net/csdanteng/article/details/77754327
      * 
      * @param root
      * @param k
      * @return
      */
-    public static Node KthNode(Node root, int k) {
-
+    public static Node KthNode(Node root, int[] k) {
 
         Node target = null;
 
@@ -90,11 +91,10 @@ public class BinaryTree {
         // 从叶节点返回的值为nullptr，依次向父节点返回该值，直到k==1，target值改变为当前节点的值
         // 找到该节点后返回即可无需再次遍历
         if (target == null) {
-
-            if (k == 1) {
+            k[1]++;
+            if (k[0] == k[1]) {
                 target = root;
             }
-            k--;
         }
         if (target == null && root.right != null) {
 
@@ -102,6 +102,23 @@ public class BinaryTree {
         }
 
         return target;
+    }
+
+    public static Node KthNode(Node root, int[] k, Node[] res) {
+        if (root == null || res[0] != null) {
+            return null;
+        }
+        // if (res != null){
+        // return res;
+        // }
+        KthNode(root.left, k, res);
+
+        k[1]++;
+        if (k[0] == k[1]) {
+            res[0] = root;
+        }
+        KthNode(root.right, k, res);
+        return null;
     }
 
     public static Node KthNodeV1(Node root, int k) {
@@ -172,7 +189,10 @@ public class BinaryTree {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         createBinTree(arr);
         Node root = nodeList.get(0);
-        System.out.println(KthNodeV1(root, 4).val);
+        int[] count = new int[2];
+        count[0] = 6;
+        Node node = KthNode(root, count);
+        System.out.println(node.val);
         System.out.println("pre------------");
         preOrderTraverse(root);
         System.out.println("stack-pre------------");
