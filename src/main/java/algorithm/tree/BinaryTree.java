@@ -1,13 +1,15 @@
 package algorithm.tree;
 
 
+import javafx.scene.transform.Rotate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 /**
  * Created by chenyun on 2020/5/1.
- *
+ * <p>
  * https://blog.csdn.net/qq_43255303/article/details/89416512
  */
 public class BinaryTree {
@@ -73,10 +75,10 @@ public class BinaryTree {
 
     /**
      * https://www.cnblogs.com/tianzeng/p/10269202.html
-     *
-     * 
+     * <p>
+     * <p>
      * TODO k处理错误 参考：https://blog.csdn.net/csdanteng/article/details/77754327
-     * 
+     *
      * @param root
      * @param k
      * @return
@@ -187,12 +189,14 @@ public class BinaryTree {
 
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        createBinTree(arr);
+        int[] array = {10, 6, 14, 4, 8, 12, 16};
+        createBinTree(array);
         Node root = nodeList.get(0);
+        Node convert = convert(root);
         int[] count = new int[2];
         count[0] = 6;
         Node node = KthNode(root, count, null);
-        System.out.println(node.val);
+//        System.out.println(node.val);
         System.out.println("pre------------");
         preOrderTraverse(root);
         System.out.println("stack-pre------------");
@@ -203,5 +207,55 @@ public class BinaryTree {
         inOrderTraverseStack(root);
         System.out.println("post------------");
         postOrderTraverse(root);
+    }
+
+
+    /**
+     * int[] array={10,6,14,4,null,12,16};
+     * 二叉搜索树转双向列表
+     *
+     * @param root
+     * @return
+     */
+    public static Node convert(Node root) {
+
+        /**
+         * 左右节点有一个为空情况返回
+         */
+        if (root == null) {
+            return null;
+        }
+        /**
+         * 叶子节点返回
+         */
+        if (root.left == null && root.right == null) {
+            return root;
+        }
+        //1.将左子树构造成双链表，并返回链表头节点
+        Node left = convert(root.left);
+
+        //2.定位至左子树双链表最后一个节点
+        Node p = left;
+
+        while (p != null && p.right != null) {
+            p = p.right;
+        }
+        //3.如果左子树链表不为空的话，将当前root追加到左子树链表
+        if (left != null) {
+            p.right = root;
+            root.left = p;
+        }
+
+        // 4.将右子树构造成双链表，并返回链表头节点
+        Node right = convert(root.right);
+
+        // 5.如果右子树链表不为空的话，将该链表追加到root节点之后
+        if (right != null) {
+            root.right = right;
+            right.left = root;
+        }
+
+
+        return left != null ? left : root;
     }
 }
