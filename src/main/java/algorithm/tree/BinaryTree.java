@@ -211,6 +211,7 @@ public class BinaryTree {
 
 
     /**
+     * https://www.jianshu.com/p/7e30fb656d63
      * int[] array={10,6,14,4,null,12,16};
      * 二叉搜索树转双向列表
      *
