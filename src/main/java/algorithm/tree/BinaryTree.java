@@ -192,10 +192,12 @@ public class BinaryTree {
         int[] array = {10, 6, 14, 4, 8, 12, 16};
         createBinTree(array);
         Node root = nodeList.get(0);
+        boolean flag = isValidBST(root);
+        System.out.println(flag);
         Node convert = convert(root);
         int[] count = new int[2];
         count[0] = 6;
-        Node node = KthNode(root, count, null);
+        Node node = KthNode(root, count);
 //        System.out.println(node.val);
         System.out.println("pre------------");
         preOrderTraverse(root);
@@ -258,5 +260,38 @@ public class BinaryTree {
 
 
         return left != null ? left : root;
+    }
+
+    static long minPre = Long.MIN_VALUE;
+
+    public static boolean isValidBST(Node root){
+        if (root == null){
+            return true;
+        }
+
+        if (isValidBST(root.left)){
+            if (minPre<root.val){
+                minPre = root.val;
+                return isValidBST(root.right);
+            }
+        }
+        return false;
+    }
+
+    public static boolean isValidBSTv(Node root){
+        if (root == null){
+            return true;
+        }
+        //先判断左子树——>root--->右子树
+       return isValidBSTv(root.left)&&judge(root)&&isValidBSTv(root.right);
+    }
+
+    public static boolean judge(Node root){
+        if (root.val>minPre){
+            minPre = root.val;
+            return true;
+        }else {
+            return false;
+        }
     }
 }
