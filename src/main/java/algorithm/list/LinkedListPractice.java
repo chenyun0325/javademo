@@ -1,5 +1,7 @@
 package algorithm.list;
 
+import java.util.PriorityQueue;
+
 /**
  * 二叉搜索树转双向列表
  * https://www.jianshu.com/p/7e30fb656d63
@@ -42,15 +44,27 @@ public class LinkedListPractice {
 
         ListNode dummyHeader = new ListNode(-1);
         ListNode first = new ListNode(1);
-        ListNode second = new ListNode(43);
+        ListNode second = new ListNode(2);
         ListNode third = new ListNode(3);
-        ListNode fourth = new ListNode(9);
-        ListNode fifth = new ListNode(5);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(7);
         dummyHeader.next = first;
         first.next = second;
         second.next = third;
         third.next = fourth;
         fourth.next = fifth;
+
+        ListNode dummyHeader1 = new ListNode(-1);
+        ListNode first1 = new ListNode(6);
+        ListNode second1 = new ListNode(11);
+        ListNode third1 = new ListNode(31);
+        ListNode fourth1 = new ListNode(55);
+        ListNode fifth1 = new ListNode(71);
+        dummyHeader1.next = first1;
+        first1.next = second1;
+        second1.next = third1;
+        third1.next = fourth1;
+        fourth1.next = fifth1;
 
         printList(dummyHeader.next);
 
@@ -59,6 +73,9 @@ public class LinkedListPractice {
         printList(reverseKList(dummyHeader.next, 2));
 
         printList(sortList(dummyHeader.next));
+
+        printList(mergeKListsV(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
+        printList(mergeKLists(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
     }
 
     public static void printList(ListNode head) {
@@ -110,6 +127,11 @@ public class LinkedListPractice {
         return mergeListV(left, right);
     }
 
+    /**
+     * @param l
+     * @param r
+     * @return
+     */
     public static ListNode mergeListV(ListNode l, ListNode r) {
 
         ListNode dummyHead = new ListNode(0);
@@ -153,6 +175,52 @@ public class LinkedListPractice {
 
         return newHead;
     }
+
+
+    public static ListNode mergeKListsV(ListNode[] lists){
+        if (lists == null || lists.length ==0){
+            return null;
+        }
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((o1, o2) -> (o1.val-o2.val));
+        for (ListNode head : lists) {
+            if (head!= null){
+                queue.offer(head);
+            }
+        }
+        ListNode dummyHead = new ListNode(-1);
+        ListNode cur = dummyHead;
+        while (queue.size()>0){
+            ListNode node = queue.poll();
+            cur.next = node;
+            cur=cur.next;//cur = node
+            if (node.next!=null){
+                queue.offer(node.next);
+            }
+        }
+        cur.next = null;
+        return dummyHead.next;
+    }
+
+
+    public static ListNode mergeKLists(ListNode[] lists){
+        if (lists == null || lists.length ==0){
+            return null;
+        }
+        return mergeKListsHelper(lists,0,lists.length-1);
+    }
+
+    public static ListNode mergeKListsHelper(ListNode[] lists,int begin,int end){
+        if (begin == end){
+            return lists[begin];
+        }
+        int mid = (begin+end)/2;
+        ListNode left = mergeKListsHelper(lists,begin,mid);
+        ListNode right = mergeKListsHelper(lists,mid+1,end);
+        return mergeListV(left,right);
+    }
+
+
+
 
     /**
      * todo 归并排序
