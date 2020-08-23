@@ -12,7 +12,7 @@ public class Sort {
         int[] arr = {1, 5, 6, 2, 8, 8, 9, 10};
 
 //        mpSort(arr);
-//        mergeSort(arr,0,arr.length-1,new int[arr.length]);
+        mergeSort(arr,0,arr.length-1,new int[arr.length]);
         quickSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
 

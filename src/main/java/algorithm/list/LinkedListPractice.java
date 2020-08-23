@@ -1,12 +1,14 @@
 package algorithm.list;
 
+import java.util.PriorityQueue;
+
 /**
  * 二叉搜索树转双向列表
  * https://www.jianshu.com/p/7e30fb656d63
  */
 public class LinkedListPractice {
 
-    static class ListNode{
+    static class ListNode {
         int val;
         ListNode next;
 
@@ -42,70 +44,218 @@ public class LinkedListPractice {
 
         ListNode dummyHeader = new ListNode(-1);
         ListNode first = new ListNode(1);
-        ListNode second = new ListNode(43);
+        ListNode second = new ListNode(2);
         ListNode third = new ListNode(3);
-        ListNode fourth = new ListNode(9);
-        ListNode fifth = new ListNode(5);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(7);
         dummyHeader.next = first;
-        first.next=second;
-        second.next=third;
-        third.next= fourth;
-        fourth.next=fifth;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+
+        ListNode dummyHeader1 = new ListNode(-1);
+        ListNode first1 = new ListNode(6);
+        ListNode second1 = new ListNode(11);
+        ListNode third1 = new ListNode(31);
+        ListNode fourth1 = new ListNode(55);
+        ListNode fifth1 = new ListNode(71);
+        dummyHeader1.next = first1;
+        first1.next = second1;
+        second1.next = third1;
+        third1.next = fourth1;
+        fourth1.next = fifth1;
 
         printList(dummyHeader.next);
 
         printList(slListSort(dummyHeader.next));
 
-        printList(reverseKList(dummyHeader.next,2));
+        printList(reverseKList(dummyHeader.next, 2));
+
+        printList(sortList(dummyHeader.next));
+
+        printList(mergeKListsV(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
+        printList(mergeKLists(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
     }
 
-    public static void printList(ListNode head){
+    public static void printList(ListNode head) {
 
         if (head == null || head.next == null) {
             return;
         }
         ListNode cur;
         cur = head;
-        while (cur!=null){
+        while (cur != null) {
             System.out.println(cur.val);
             cur = cur.next;
         }
         System.out.println("-----------------");
     }
 
+    public static ListNode sortList(ListNode head) {
+        /**
+         * 只有一个节点返回
+         */
+        if (head.next == null) {
+            return head;
+        }
+
+        //快慢指针找出中间结点，这块需要注意一点就是
+        //我们需要一个标记sign跟踪慢结点，当找出中间结点时，
+        //让中间结点前一结点即sign的下一个结点指向空
+        //这样做的目的是为了使前半部分链表和后半部分链表进行合并排序
+
+        //慢节点
+        ListNode s = head;
+        //快节点
+        ListNode f = head;
+        //标记节点
+        ListNode sign = null;
+
+        while (f!=null&&f.next!= null) {
+            sign = s;
+            s = s.next;
+            f = f.next.next;
+        }
+        //标记节点下一个节点为空
+        sign.next = null;
+
+        ListNode left = sortList(head);
+
+        ListNode right = sortList(s);
+
+        return mergeListV(left, right);
+    }
+
+    /**
+     * @param l
+     * @param r
+     * @return
+     */
+    public static ListNode mergeListV(ListNode l, ListNode r) {
+
+        ListNode dummyHead = new ListNode(0);
+
+        ListNode cur = dummyHead;
+
+        while (l != null && r != null) {
+            if (l.val < r.val) {
+                cur.next = l;
+                l = l.next;
+                cur = cur.next;
+            } else {
+                cur.next = r;
+                r = r.next;
+                cur = cur.next;
+            }
+        }
+        if (l != null) {
+            cur.next = l;
+        }
+        if (r != null) {
+            cur.next = r;
+        }
+        return dummyHead.next;
+    }
+
+    public static ListNode mergeList(ListNode p1, ListNode p2) {
+        if (p1 == null) {
+            return p2;
+        } else if (p2 == null) {
+            return p1;
+        }
+        ListNode newHead;
+        if (p1.val < p2.val) {
+            newHead = p1;
+            newHead.next = mergeList(p1.next, p2);
+        } else {
+            newHead = p2;
+            newHead.next = mergeList(p1, p2.next);
+        }
+
+        return newHead;
+    }
+
+
+    public static ListNode mergeKListsV(ListNode[] lists){
+        if (lists == null || lists.length ==0){
+            return null;
+        }
+        PriorityQueue<ListNode> queue = new PriorityQueue<>((o1, o2) -> (o1.val-o2.val));
+        for (ListNode head : lists) {
+            if (head!= null){
+                queue.offer(head);
+            }
+        }
+        ListNode dummyHead = new ListNode(-1);
+        ListNode cur = dummyHead;
+        while (queue.size()>0){
+            ListNode node = queue.poll();
+            cur.next = node;
+            cur=cur.next;//cur = node
+            if (node.next!=null){
+                queue.offer(node.next);
+            }
+        }
+        cur.next = null;
+        return dummyHead.next;
+    }
+
+
+    public static ListNode mergeKLists(ListNode[] lists){
+        if (lists == null || lists.length ==0){
+            return null;
+        }
+        return mergeKListsHelper(lists,0,lists.length-1);
+    }
+
+    public static ListNode mergeKListsHelper(ListNode[] lists,int begin,int end){
+        if (begin == end){
+            return lists[begin];
+        }
+        int mid = (begin+end)/2;
+        ListNode left = mergeKListsHelper(lists,begin,mid);
+        ListNode right = mergeKListsHelper(lists,mid+1,end);
+        return mergeListV(left,right);
+    }
+
+
+
+
     /**
      * todo 归并排序
      * https://www.cnblogs.com/du001011/p/10610522.html
-     *
+     * <p>
      * 链表的选择排序
      * 值交换
      * o(N^2)
+     *
      * @param head
      * @return
      */
-    public static ListNode slListSort(ListNode head){
+    public static ListNode slListSort(ListNode head) {
 
         ListNode p;
         ListNode q;
         //临时变量
         ListNode t;
 
-        if (head == null || head.next == null){
+        if (head == null || head.next == null) {
             return head;
         }
 
         /**
          * 嵌套循环比较
          */
-        for (p = head;p!= null;p=p.next){
+        for (p = head; p != null; p = p.next) {
             t = p;
 
-            for (q= p.next;q!= null;q=q.next){
-                if (q.val<t.val){
+            for (q = p.next; q != null; q = q.next) {
+                if (q.val < t.val) {
                     t = q;
                 }
             }
-            if (t != p){
+            if (t != p) {
                 int tmpV = t.val;
                 t.val = p.val;
                 p.val = tmpV;
@@ -119,7 +269,7 @@ public class LinkedListPractice {
     /**
      * https://mp.weixin.qq.com/s/LVVpFCSI-FByY-1UnD3RNA
      * https://pic.leetcode-cn.com/866b404c6b0b52fa02385e301ee907fc015742c3766c80c02e24ef3a8613e5ad-k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.png
-     *
+     * <p>
      * todo
      * https://www.cnblogs.com/plokmju/p/linkedreverse_toutiao.html
      *
@@ -127,7 +277,7 @@ public class LinkedListPractice {
      * @param k
      * @return
      */
-    public static ListNode reverseKList(ListNode head,int k){
+    public static ListNode reverseKList(ListNode head, int k) {
 
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -137,15 +287,15 @@ public class LinkedListPractice {
          * prev节点指向子链表头部
          */
         ListNode prev = dummy;
-        ListNode end =dummy;
+        ListNode end = dummy;
 
-        while (end.next != null){
+        while (end.next != null) {
 
-            for (int i=0;i<k && end!=null;i++){
+            for (int i = 0; i < k && end != null; i++) {
                 end = end.next;
             }
             //不足k不处理
-            if (end == null){
+            if (end == null) {
                 break;
             }
             //处理子链表
@@ -175,20 +325,20 @@ public class LinkedListPractice {
         return dummy.next;
     }
 
-    public static ListNode reverseList_0(ListNode head){
-        if (head == null || head.next== null)
+    public static ListNode reverseList_0(ListNode head) {
+        if (head == null || head.next == null)
             return head;
         /**
          * cur 表示移动的指针
          * newHead表示新链表头指针
          */
-        ListNode cur,newHead=null;
+        ListNode cur, newHead = null;
         /**
          * 刚开始头结点就是当前指针
          */
         cur = head;
 
-        while (cur != null){
+        while (cur != null) {
 
             ListNode tmp = cur.next;//暂存当前结点下一个结点
             /**
@@ -210,12 +360,12 @@ public class LinkedListPractice {
         return newHead;
     }
 
-    public static ListNode reverseList_V(ListNode head){
+    public static ListNode reverseList_V(ListNode head) {
 
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
-        ListNode prev,cur,end;
+        ListNode prev, cur, end;
 
         prev = null;
 
@@ -240,7 +390,7 @@ public class LinkedListPractice {
              */
             cur = end;
 
-            if (end !=null){
+            if (end != null) {
                 end = end.next;
             }
         }
@@ -249,10 +399,10 @@ public class LinkedListPractice {
     }
 
 
-    public static ListNode reverseList(ListNode head){
+    public static ListNode reverseList(ListNode head) {
         //递归
         //1.第一个条件是判断递归开始，传入的参数的合法性。第二个是递归的终止条件
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
         //2.开始进行递归
