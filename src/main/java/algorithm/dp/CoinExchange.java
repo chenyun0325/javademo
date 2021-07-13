@@ -178,7 +178,8 @@ public class CoinExchange {
         int[] penny = new int[]{3,4,7};
         int n = penny.length;
         int aim =33;
-//        System.out.println(core1(penny,0,aim));
-        System.out.println(charge(penny, aim));
+        System.out.println(core2(penny,0,aim));
+        System.out.println(core4(penny,aim));
+//        System.out.println(charge(penny, aim));
     }
 }

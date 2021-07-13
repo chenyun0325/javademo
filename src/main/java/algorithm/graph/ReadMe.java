@@ -27,6 +27,10 @@ package algorithm.graph;
  *
  * dfs 算法案例
  * https://www.cnblogs.com/xwh-blogs/p/12721648.html
+ * https://leetcode-cn.com/problems/restore-ip-addresses/solution/2020041693medianhui-su-di-gui-fu-yuan-ip-di-zhi-by/
+ *
+ * leetcode的dfs思想
+ * https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/
  *
  * dp思想案例
  * https://www.jianshu.com/p/e788c046264d
