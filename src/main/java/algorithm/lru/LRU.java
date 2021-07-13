@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 /**
  * https://www.cnblogs.com/wyq178/p/9976815.html
+ *
+ * lru简易写法:
+ * https://blog.csdn.net/qq_41231926/article/details/86173740
  * @param <K>
  * @param <V>
  */
