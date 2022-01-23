@@ -28,7 +28,7 @@ public class StringMatch {
         int length = s.length();//目标字符串的长度
         int plength = t.length();//模式串的长度
 
-        //循环目标字符串,i增加代表没有批量成功,模式串右移动
+        //循环目标字符串,i增加代表没有匹配成功,模式串右移动
         for (int i=0;i<length-plength;i++){
             //循环模式串
             int j=0;

@@ -18,6 +18,7 @@ public class StringOpt {
         printChildString_v(str.toCharArray(),0);
 
         System.out.println(longestPalindrome("abba"));
+        System.out.println(longestPalindrome_v("12abba2"));
         System.out.println(longestPalindrome1("abba"));
 //
 //        String testStr = "abcdeab";
@@ -223,6 +224,31 @@ public class StringOpt {
         }
         // 如果我们的回文串的长度为偶数，那么中心左边的长度会比右边的长度小1
         return s.substring(center - (maxLength - 1) / 2, center + maxLength / 2 + 1);
+    }
+
+    /**
+     * 动态规划求解最长回文
+     * @param s
+     * @return
+     */
+    public static String longestPalindrome_v(String s){
+        int len = s.length();
+        if(len < 2){
+            return s;
+        }
+        boolean[][] dp = new boolean[len][len];
+        String res = s.substring(0,1);
+        for(int i = len -1;i>=0;i--){
+            for(int j = i+1; j< len;j++){
+                dp[i][j] = s.charAt(i)==s.charAt(j)&&(j-i<2||dp[i+1][j-1]);
+                if(dp[i][j]){
+                    if(j-i+1>res.length()){
+                        res=s.substring(i,j+1);
+                    }
+                }
+            }
+        }
+        return res;
     }
 
     private static int centerExpand(String s,int begin,int end){

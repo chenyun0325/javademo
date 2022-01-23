@@ -9,6 +9,7 @@ public class Sort {
 
     public static void main(String[] args) {
 
+
         int[] arr = {1, 5, 6, 2, 8, 8, 9, 10};
 
 //        mpSort(arr);

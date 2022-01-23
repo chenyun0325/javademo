@@ -67,10 +67,7 @@ public class KMP {
                 for (l = 0, r = j, flag = true; r <= i && flag; ++l, ++r) {
                     flag = t.charAt(l) == t.charAt(r);
                 }
-                if (flag) {
-                    next[i] = i - j + 1;
-                    break;
-                }
+
             }
         }
         return next;

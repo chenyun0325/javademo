@@ -47,7 +47,7 @@ public class SubSet {
         for (int i = 0; i < nums.length; i++) {
             int size = result.size();
             for (int j = 0; j < size; j++) {        //循环所有已有的子集，用于拷贝
-                List<Integer> temp = new ArrayList<Integer>(result.get(j));     //ArrayList的拷贝构造函数
+                List<Integer> temp = new ArrayList<>(result.get(j));     //ArrayList的拷贝构造函数
                 temp.add(nums[i]);
                 result.add(temp);
             }
