@@ -3,21 +3,24 @@ package algorithm.tonghuashun;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * Created by chenyun on 2022/1/21. https://www.cnblogs.com/well-is-good-man/p/15521593.html
+ * Created by chenyun on 2022/1/21.
  */
-public class DictionarySearcher {
+public class DictionarySearcherBack {
     String[] words;
 
-    public DictionarySearcher(String fileWords) {
+    public DictionarySearcherBack(String fileWords) {
         String[] input = fileWords.split(",");
         this.words = input;
     }
 
-    public DictionarySearcher(String[] words) {
+    public DictionarySearcherBack(String[] words) {
         this.words = words;
     }
 
@@ -52,8 +55,6 @@ public class DictionarySearcher {
     }
 
     /**
-     * https://wentinghwt.github.io/tinkerbaby.github.io/posts/KMP_Impl_notes/
-     * http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html
      * 
      * @param t
      * @param word
@@ -106,9 +107,7 @@ public class DictionarySearcher {
 
 
     /**
-     * 分批处理函数:
-     * 内存考虑:函数内部分批处理词文件
-     * 时间考虑:返回切割之后词文件,多线程处理
+     * 分批处理函数: 内存考虑:函数内部分批处理词文件 时间考虑:返回切割之后词文件,多线程处理
      *
      * @param fileName 文件路径
      * @param batchSize 批次大小
@@ -170,12 +169,12 @@ public class DictionarySearcher {
     private static class WordTask implements Callable<Map<String, List<Integer>>>{
         final List<String> words;
         final String document;
-        private DictionarySearcher ds;
+        private DictionarySearcherBack ds;
 
         public WordTask(List<String> words, String document) {
             this.words = words;
             this.document = document;
-            ds = new DictionarySearcher(words.toArray(new String[words.size()]));
+            ds = new DictionarySearcherBack(words.toArray(new String[words.size()]));
         }
         @Override
         public Map<String, List<Integer>> call() throws Exception {
@@ -212,14 +211,15 @@ public class DictionarySearcher {
             }
         }
         executors.shutdown();
+        System.err.println("多线程Java字符串匹配:"+mergeMap);
+
 
         long jdkSearchStart = System.currentTimeMillis();
-        DictionarySearcher ds = new DictionarySearcher(fileWords);
+        DictionarySearcherBack ds = new DictionarySearcherBack(fileWords);
         System.out.println("Java字符串匹配:" + ds.search(document));
         System.out.println("Java字符串匹配耗时:" + (System.currentTimeMillis() - jdkSearchStart));
         long kmpSearchStart = System.currentTimeMillis();
         System.out.println("KMP模式匹配:" + ds.searchKmp(document));
         System.out.println("KMP模式匹配耗时:" + (System.currentTimeMillis() - kmpSearchStart));
-        ds.getNext("DABCDABDE");
     }
 }

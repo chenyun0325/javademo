@@ -53,9 +53,19 @@ public class CombinationProblem {
                 Arrays.asList("a","b","c"),
                 Arrays.asList("A","B","C"));
 
-        System.out.println(getSetCombination(inputs1));
+        /**
+         * 单元素测试
+         */
+        List<List<String>> inputs3 = Arrays.asList(Arrays.asList("1"),
+                Arrays.asList("a"),
+                Arrays.asList("A"));
 
+        List<List<String>> inputs4 = Arrays.asList(Arrays.asList("1","2","3","4"));
+
+        System.out.println(getSetCombination(inputs1));
         System.out.println(getSetCombination(inputs2));
+        System.out.println(getSetCombination(inputs3));
+        System.out.println(getSetCombination(inputs4));
 
     }
 

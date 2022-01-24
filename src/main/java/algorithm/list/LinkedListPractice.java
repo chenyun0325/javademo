@@ -53,30 +53,59 @@ public class LinkedListPractice {
         second.next = third;
         third.next = fourth;
         fourth.next = fifth;
+        int i =0;
+        int resIndex = traverse(dummyHeader.next, i);
+        System.err.println(resIndex);
 
-        ListNode dummyHeader1 = new ListNode(-1);
-        ListNode first1 = new ListNode(6);
-        ListNode second1 = new ListNode(11);
-        ListNode third1 = new ListNode(31);
-        ListNode fourth1 = new ListNode(55);
-        ListNode fifth1 = new ListNode(71);
-        dummyHeader1.next = first1;
-        first1.next = second1;
-        second1.next = third1;
-        third1.next = fourth1;
-        fourth1.next = fifth1;
-
-        printList(dummyHeader.next);
-
-        printList(slListSort(dummyHeader.next));
-
-        printList(reverseKList(dummyHeader.next, 2));
-
-        printList(sortList(dummyHeader.next));
-
-        printList(mergeKListsV(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
-        printList(mergeKLists(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
+//        ListNode dummyHeader1 = new ListNode(-1);
+//        ListNode first1 = new ListNode(6);
+//        ListNode second1 = new ListNode(11);
+//        ListNode third1 = new ListNode(31);
+//        ListNode fourth1 = new ListNode(55);
+//        ListNode fifth1 = new ListNode(71);
+//        dummyHeader1.next = first1;
+//        first1.next = second1;
+//        second1.next = third1;
+//        third1.next = fourth1;
+//        fourth1.next = fifth1;
+//
+//        printList(dummyHeader.next);
+//
+//        printList(slListSort(dummyHeader.next));
+//
+//        printList(reverseKList(dummyHeader.next, 2));
+//
+//        printList(sortList(dummyHeader.next));
+//
+//        printList(mergeKListsV(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
+//        printList(mergeKLists(new ListNode[]{dummyHeader.next, dummyHeader1.next}));
     }
+
+
+    /**
+     * 深入理解递归的前序与后序
+     * https://labuladong.gitee.io/algo/1/7/
+     * @param head
+     * @param i
+     * @return
+     */
+    public static int traverse(ListNode head,int i) {
+        if (head == null) {
+            return i;
+        }
+//        System.err.println(i);
+        traverse(head.next,++i);
+        if (i == 5){
+            return i;
+        }
+//        i--;
+        System.out.println(i);
+        i++;
+        // 后序位置
+        System.err.println(head.val);
+        return i;
+    }
+
 
     public static void printList(ListNode head) {
 
